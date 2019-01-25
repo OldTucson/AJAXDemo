@@ -1,0 +1,142 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑";
+	color:rgb(150,150,150);
+}
+img{
+	border: none;
+}
+.clearfix:after{
+	content: ".";
+	display: block;
+	height: 0;
+	clear:both;
+	visibility: hidden;
+}
+.clearfix{
+	*zoom:1;
+}
+a{
+	text-decoration: none;
+}
+ul li{
+	list-style: none;
+}
+body{
+	background: rgba(0,0,0,.5);
+}
+.loginbox{
+	position: fixed;
+	width: 350px;
+	height: 370px;
+	background: white;
+	left: 50%;
+	top: 50%;
+	margin-left: -175px;
+	margin-top: -185px;
+}
+.innerbox{
+	width: 330px;
+	height: 350px;
+	margin:0 auto;
+	position: relative;
+}
+.tab_btn{
+	width: 330px;
+	height: 50px;
+	margin:0 auto;
+	border-bottom:1px solid rgb(200,200,200);
+}
+.tab_btn .tabb{
+	float: left;
+	width:70px;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	font-size: 17px;
+	
+}
+.tab_btn .tabb:hover{
+	border-bottom: 1px solid red;
+}
+.tab_btn .tab_exit{
+	float: right;
+	height: 50px;
+	line-height: 50px;
+	font-size: 20px;
+	color:rgb(200,200,200);
+}
+.innerbox .tri_qr{
+	position: absolute;
+	right: -10px;
+	bottom: -24px;
+}
+.innerbox .login_info{
+	width: 320px;
+	height: 45px;
+	border-radius: 10px;
+	border:1px solid rgb(170,170,170);
+	margin: 0 auto;
+	outline: none;
+	font-size: 15px;
+	text-indent: 20px;
+}
+.innerbox .usr{
+	margin-top: 25px;
+}
+.innerbox .login_error{
+	height: 20px;
+	line-height: 20px;
+	font-size: 13px;
+	color: red;
+}
+.innerbox .auto_btn{
+	width: 320px;
+	margin: 0 auto;
+}
+.auto_btn p{
+	float: left;
+}
+.auto_btn a{
+	float: right;
+}
+.innerbox .login{
+	width: 320px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	font-size: 16px;
+	color:white;
+	margin:15px auto;
+	background: red;
+	border-radius: 30px;
+}
+.other_login{
+	width: 320px;
+	margin: 0 auto;
+}
+.other_login .other_tit{
+	float: left;
+	font-size: 14px;
+}
+.other_login a{
+	float: left;
+	margin-left: 30px;
+	width: 25px;
+	height: 25px;
+	background: rgb(140,140,140);
+	color:white;
+	line-height: 25px;
+	text-align: center;
+	border-radius: 50%;
+}
+.fa-qq:hover{
+	background: darkcyan;
+}
+.fa-weixin:hover{
+	background:green;
+}
+.fa-weibo:hover{
+	background: red;
+}

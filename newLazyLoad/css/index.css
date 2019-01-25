@@ -1,0 +1,12 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+.goods{
+	width: 100%;
+}
+.goods li{
+	width: 100%;
+	height: 500px;
+	border-bottom: 1px solid black;
+}

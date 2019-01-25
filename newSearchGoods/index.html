@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" name="" class="key">
+	<ul class="result"></ul>
+	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+	<script type="text/javascript">
+		function search(){
+
+			//获取DOM
+				var key = $(".key"),
+					result = $(".result"),
+					oldStr,
+					flag;
+				function load(){
+					result.html('loading....')
+				}
+				key.keyup(function(){
+					var val = key.val();
+					if (val.length == 0){
+			 			result.html("");
+			 			flag = false;
+			 			return;
+			 		}else{
+			 			flag = true;
+			 		}
+			 		if (val == oldStr){
+			 			return;
+			 		}
+			 		oldStr = val;
+
+			 		$.ajax({
+			 			type: 'get',
+			 			dataType: 'json',
+			 			url: 'getData.php',
+			 			data: {
+			 				key: val
+			 			},
+			 			beforeSend: load,
+			 			success: function(data){
+			 				if (data.success){
+ 								result.html("");
+ 								var list = data.list;
+ 								var htmlStr = "";
+ 								for(var i = 0; i < list.length; i++){
+ 									htmlStr += "<li>" + list[i].goodsName + "</li>";
+ 								}
+ 								result.html(htmlStr)
+ 							}
+			 			},
+			 			error: function(xhr,status,err){
+			 				console.log(xhr);
+			 				console.log(status);
+			 				console.log(err);
+			 			}
+			 		});
+				});
+		}
+		search();
+
+		
+
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+</head>
+<body>
+	<div class="loginbox">
+		<div class="innerbox">
+			<div class="tab_btn clearfix">
+				<a class="tab_login tabb" href="javascript:;">登录</a>
+				<a class="tab_result tabb" href="javascript:;">注册</a>
+				<a class="tab_exit" href="javascript:;">&#10005;</a>
+			</div>
+			<input type="text" class="usr login_info" placeholder="请输入登录邮箱/手机号">
+			<div class="usr_error login_error"></div>
+			<input type="password" class="pwd login_info" placeholder="6-16位密码,区分大小写,不能用空格">
+			<div class="pwd_error login_error"></div>
+			<div class="auto_btn clearfix">
+				<p><input type="checkbox" class="auto_login">7天内自动登录</p>
+				<a href="javascript:;">忘记密码</a>
+			</div>
+			<div class="login">登录</div>
+			<div class="other_login">
+				<div class="other_tit">其他方式登录</div>
+				<a href="javascript:;" class="fa fa-qq"></a>
+				<a href="javascript:;" class="fa fa-weixin"></a>
+				<a href="javascript:;" class="fa fa-weibo"></a>
+			</div>
+			<a href="javascript:;" class="tri_qr"><img src="img/qrcode.png"></a>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+	<script src="js/cookie.js"></script>
+	<!-- <script src="js/util.js"></script> -->
+	<script>
+		//用户登录的处理过程 
+		function loading (){
+			$('.login').html('登录中....')
+		}
+		function complete (){
+			$('.login').html('登录')
+		}
+		function login(){
+			//获取DOM
+			var user = $(".usr"),
+				pw = $(".pwd"),
+				btn = $(".login"),
+				usrErr = $(".usr_error"),
+				pwdErr = $(".pwd_error"),
+				autoLogin = $(".auto_login");
+			//当进入该页面时，先读取cookie,如果存在，读取cookie到表单元素
+				function handleCookie(){
+					var userCookie = getCookie("user");
+					var pwCookie = getCookie("pw");
+					if (!(userCookie == null || pwCookie == null)){
+						user.val(userCookie)
+						pw.val(pwCookie)
+					}
+				}
+				handleCookie();
+			//当单击登录时
+				user.blur(function(){
+					if(user.val() == ''){
+						usrErr.html('请输入正确的用户名')
+					}else{
+						usrErr.html('')
+					}
+				})
+				pw.blur(function(){
+					if(pw.val() == ''){
+						pwdErr.html('请输入正确的密码')
+					}else{
+						pwdErr.html('')
+					}
+				})
+				btn.click(function(){
+					var url = "checkUser.php?user="+ user.val()+"&pw="+ pw.val();
+					$.ajax({
+						type: 'get',
+						data: 'json',
+						url: 'checkUser.php',
+						data: {
+							user: user.val(),
+							pw: pw.val()
+						},
+						beforeSend: loading,
+						success: function(data){
+							var data = JSON.parse(data)
+							if (data.success == "1"){
+								if (autoLogin.prop('checked')){
+										//写入cookie
+										setCookie("user",user.val(),7);
+										setCookie("pw",pw.val(),7);
+								}else{
+									setCookie("user",user.val());
+								}
+								location.href = "loginSuccess.html";
+							}else{
+								pwdErr.html(data.error_msg)
+							}
+						},
+						complete: complete
+					})
+				})
+		}
+		login();
+	</script>
+</body>
+</html>

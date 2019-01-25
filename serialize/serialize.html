@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<form class="sendData">
+		<input type="text" name="user" class="usr">
+		<input type="text" name="pwd" class="pw">
+		<input type="button" name="send" class="go" value="提交">
+	</form>
+	<script type="text/javascript" src="jquery-1.12.4.js"></script>
+	<script type="text/javascript">
+		$('.go').click(function(){
+			var str = $('.sendData').serialize()
+			console.log(str)
+		})
+	</script>
+</body>
+</html>

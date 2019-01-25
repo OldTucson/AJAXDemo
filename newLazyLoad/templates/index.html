@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css">
+	<!-- 注意这里引入的路径是相对于index.php的路径引入的 -->
+</head>
+<body>
+	<ul class="goods">
+       {foreach $aaa as $index=>$val}
+			<li>
+				{$val["goodsName"]}
+				{$val["desc"]}
+			</li>
+       {/foreach}
+	</ul>
+	<script type="text/javascript" src="jquery-1.12.4.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>

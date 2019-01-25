@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.regBox {
+			display:none;
+			position: fixed;
+			left: 50%;
+			top: 50%;
+			width: 500px;
+			height: 350px;
+			margin-left: -250px;
+			margin-top: -175px;
+			background-color: #666;
+		}
+    </style>
+</head>
+<body>
+	<div class="topbar"><a href="javascript:;">注册</a></div>
+	<div class="regBox">
+		<h1>注册</h1>
+		<p>用户名: <input type="text" class="user"></p>
+		<p class="userErr"></p>
+		<p>密码: <input type="text" class="pw"></p>
+		<button>注册</button>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+	<script>
+			var regTxt = $('.topbar a')
+			var regBox = $('.regBox')
+			var user = $('.user')
+			var userErr = $('.userErr')
+
+			regTxt.click(function (){
+				regBox.css('display','block')
+			})
+			
+			user.blur(function (){
+				var val = $(this).val()
+				var patt = /^[0-9a-zA-Z]{3,6}$/
+				if(patt.test(val)){
+					$.ajax({
+						type: 'get',
+						dataType: 'json',
+						url: 'checkUser.php',
+						data: {
+							user: val
+						},
+						success: function (data){
+							if(data == '1'){
+								userErr.html('用户名被占用')
+							}else{
+								userErr.html('')
+							}
+						},
+						error: function (xhr,status,err){
+							
+						}
+					})
+				}else{
+					userErr.html('用户名不合法')
+				}
+				
+			})
+			
+	</script>
+</body>
+</html>

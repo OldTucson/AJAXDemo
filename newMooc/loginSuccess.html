@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/loginSucess.css">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+</head>
+<body>
+
+	<div class="nav clearfix">
+		<a href="javascript:;" class="profile">
+			<img src="img/pig.jpg">
+		</a>
+		<div class="pro_desc">
+				<div class="self_info clearfix">
+					<div class="photo"><img src="img/pig.jpg"></div>
+					<div class="info_desc">
+						<div class="username">admin</div>
+						<div class="count">经验1500 积分0</div>
+					</div>
+				</div>
+				<ul class="setting clearfix">
+					<li><a href="javascript:;"><i class="fa fa-bookmark-o"></i> 我的课程</a></li>
+					<li><a href="javascript:;"><i class="fa fa-list"></i> 订单中心</a></li>
+					<li><a href="javascript:;"><i class="fa fa-gift"></i> 积分商城</a></li>
+					<li><a href="javascript:;"><i class="fa fa-cog"></i> 个人设置</a></li>
+				</ul>
+				<a href="javascript:;" class="exit">安全退出</a>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+	<script src="js/cookie.js"></script>
+	<script>
+		var timer;
+		$('.profile').hover(function(){
+			clearInterval(timer)
+			$('.pro_desc').show()
+		},function(){
+			clearInterval(timer)
+			timer = setTimeout(function(){
+				$('.pro_desc').hide()
+			},500)
+			
+		})
+		$('.pro_desc').hover(function(){
+			clearInterval(timer)
+			$(this).css("display","block")
+		},function(){
+			$(this).css("display","none")
+		})
+		$('.exit').click(function(){
+			location.href = "login.html"
+		})
+		var usr = $(".username");
+		var user = getCookie("user");
+		if (user){
+			usr.innerHTML = user;
+		}
+	</script>
+</body>
+</html>
